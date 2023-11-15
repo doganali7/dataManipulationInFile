@@ -1,12 +1,25 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 public class Main {
-    public static void main(String[] args) {
-        String filename = "path_to_your_file.txt";
-        String data = "Data to append";
-        appendToFile(filename, data);
+    public static void main(String[] args) throws IOException {
+
+        int ch;
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader("src/students.txt");
+        } catch (FileNotFoundException fileErrorException) {
+            System.out.println("File not found");
+        }
+
+        while ((ch = fileReader.read()) != -1)
+            System.out.print((char) ch);
+
+        fileReader.close();
     }
 
     public static void appendToFile(String filename, String data) {
